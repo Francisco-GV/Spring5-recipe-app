@@ -3,8 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Recipe Home</title>
+    <style>
+        table, th, td {
+            border: 1px solid gray;
+            padding: 7px 15px;
+        }
+    </style>
 </head>
 <body>
-    <h1 style="color:#F0F">My Recipes!</h1>
+    <h1>My Recipes!</h1>
+    <table style="border-collapse: collapse">
+        <tr>
+            <th>ID</th>
+            <th>Description</th>
+        </tr>
+        <tr th:each="recipe : ${recipes}">
+            <td th:text="${recipe.id}">&lt;ID goes here&gt;</td>
+            <td th:text="${recipe.description}">&lt;Description goes here&gt;</td>
+        </tr>
+    </table>
 </body>
 </html>
