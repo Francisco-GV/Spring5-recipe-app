@@ -9,11 +9,13 @@ import com.frank.springprojects.recipe.model.UnitOfMeasure;
 import com.frank.springprojects.recipe.repositories.CategoryRepository;
 import com.frank.springprojects.recipe.repositories.RecipeRepository;
 import com.frank.springprojects.recipe.repositories.UnitOfMeasureRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,6 +23,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+@Slf4j
 @Component
 public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
@@ -36,7 +39,9 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
     }
 
     @Override
+    @Transactional
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
+        log.debug("Loading Data...");
         recipeRepository.saveAll(getRecipes());
     }
 
