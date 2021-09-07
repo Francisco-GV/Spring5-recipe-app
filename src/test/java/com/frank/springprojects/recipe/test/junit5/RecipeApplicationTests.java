@@ -1,4 +1,4 @@
-package com.frank.springprojects.recipe;
+package com.frank.springprojects.recipe.test.junit5;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
