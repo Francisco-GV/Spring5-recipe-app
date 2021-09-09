@@ -1,0 +1,54 @@
+.container {
+    text-align: center;
+}
+
+.card {
+    display: inline-block;
+    background-color: #eeeeee;
+    width: 700px;
+    margin: 10px;
+    border: 1px solid #006bc7;
+    border-radius: 8px;
+}
+
+.card h2 {
+    font-size: 18px;
+    text-align: left;
+    background-color: #006bc7;
+    color: white;
+    margin: 0 0 10px 0;
+    padding: 5px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
+.card ul {
+    text-align: left;
+}
+
+.card ul li {
+    font-size: 13px;
+}
+
+.card p {
+    font-size: 13px;
+    text-align: justify;
+    padding: 0 15px;
+}
+
+.data {
+    margin: 3px;
+}
+
+.data h3 {
+    display: inline-block;
+    margin: 0;
+    font-size: 13px;
+}
+
+.data p {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    font-size: 13px;
+}

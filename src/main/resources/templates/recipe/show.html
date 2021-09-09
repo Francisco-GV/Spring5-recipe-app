@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Show Recipe</title>
+    <link rel="stylesheet" href="../../static/css/style.css" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h2 th:text="${recipe.description}">Description</h2>
+            <div class="data">
+                <h3>Category:</h3>
+                <p>Mexican</p>
+                <p>American</p>
+            </div>
+            <div class="data">
+                <h3>Prep Time:</h3>
+                <p>10</p>
+            </div>
+            <div class="data">
+                <h3>Cook Time:</h3>
+                <p>10</p>
+            </div>
+            <div class="data">
+                <h3>Difficulty:</h3>
+                <p>Easy</p>
+            </div>
+            <div class="data">
+                <h3>Servings:</h3>
+                <p>10</p>
+            </div>
+            <div class="data">
+                <h3>URL:</h3>
+                <p>www.example.com</p>
+            </div>
+        </div>
+        <div class="card">
+            <h2>Ingredients</h2>
+            <ul>
+                <li>aaaaaaaaaa</li>
+                <li>eeeeeeeeee</li>
+                <li>iiiiiiiiii</li>
+                <li>oooooooooo</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h2>Directions</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque auctor augue lorem, in aliquet leo ullamcorper id.
+                Nulla in fringilla mauris. Donec convallis tempor eleifend. Quisque volutpat cursus eros vitae iaculis.
+                Nulla porta orci eget mi pharetra, nec ultrices ipsum pulvinar. Mauris ut fermentum erat.
+                Integer cursus dictum dolor ultricies consectetur. Quisque sit amet quam ante.
+                Morbi pulvinar lectus at laoreet dignissim. Sed sit amet cursus erat. Curabitur in nisi urna.
+                Sed eu pellentesque risus, nec gravida mi. Donec fermentum commodo est, vitae pharetra est sagittis ultricies.
+                Donec quis felis vel libero vehicula consequat ac vitae odio. Nam vulputate feugiat tristique.
+                Praesent vulputate neque quis hendrerit gravida.
+            </p>
+        </div>
+        <div class="card">
+            <h2>Notes</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque auctor augue lorem, in aliquet leo ullamcorper id.
+                Nulla in fringilla mauris. Donec convallis tempor eleifend. Quisque volutpat cursus eros vitae iaculis.
+                Nulla porta orci eget mi pharetra, nec ultrices ipsum pulvinar. Mauris ut fermentum erat.
+                Integer cursus dictum dolor ultricies consectetur. Quisque sit amet quam ante.
+                Morbi pulvinar lectus at laoreet dignissim. Sed sit amet cursus erat. Curabitur in nisi urna.
+                Sed eu pellentesque risus, nec gravida mi. Donec fermentum commodo est, vitae pharetra est sagittis ultricies.
+                Donec quis felis vel libero vehicula consequat ac vitae odio. Nam vulputate feugiat tristique.
+                Praesent vulputate neque quis hendrerit gravida.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

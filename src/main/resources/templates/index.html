@@ -16,10 +16,12 @@
         <tr>
             <th>ID</th>
             <th>Description</th>
+            <th>View</th>
         </tr>
         <tr th:each="recipe : ${recipes}">
             <td th:text="${recipe.id}">&lt;ID goes here&gt;</td>
             <td th:text="${recipe.description}">&lt;Description goes here&gt;</td>
+            <td><a href="#" th:href="@{'/recipe/show/' + ${recipe.id}}">&lt;Link goes here&gt;</a></td>
         </tr>
     </table>
 </body>
