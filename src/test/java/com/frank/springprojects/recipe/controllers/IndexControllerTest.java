@@ -1,4 +1,4 @@
-package com.frank.springprojects.recipe.test.junit4;
+package com.frank.springprojects.recipe.controllers;
 
 import com.frank.springprojects.recipe.controllers.IndexController;
 import com.frank.springprojects.recipe.model.Recipe;

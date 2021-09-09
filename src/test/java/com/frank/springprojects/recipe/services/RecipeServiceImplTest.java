@@ -1,4 +1,4 @@
-package com.frank.springprojects.recipe.test.junit4;
+package com.frank.springprojects.recipe.services;
 
 import com.frank.springprojects.recipe.model.Recipe;
 import com.frank.springprojects.recipe.repositories.RecipeRepository;

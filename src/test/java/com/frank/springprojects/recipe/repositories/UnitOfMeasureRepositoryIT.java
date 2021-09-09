@@ -1,4 +1,4 @@
-package com.frank.springprojects.recipe.test.junit4;
+package com.frank.springprojects.recipe.repositories;
 
 import com.frank.springprojects.recipe.model.UnitOfMeasure;
 import com.frank.springprojects.recipe.repositories.UnitOfMeasureRepository;

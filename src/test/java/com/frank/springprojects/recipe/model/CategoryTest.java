@@ -1,4 +1,4 @@
-package com.frank.springprojects.recipe.test.junit4;
+package com.frank.springprojects.recipe.model;
 
 import com.frank.springprojects.recipe.model.Category;
 import static org.junit.Assert.*;
