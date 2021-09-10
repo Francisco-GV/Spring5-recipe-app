@@ -32,7 +32,7 @@
             </div>
             <div class="data">
                 <h3>URL:</h3>
-                <p th:text="${recipe.url}">www.example.com</p>
+                <a th:href="@{${recipe.url}}" th:text="${recipe.url}">www.example.com</a>
             </div>
         </div>
         <div class="card">
@@ -43,34 +43,24 @@
                 <li th:remove="all">oooooooooo</li>
                 <li th:each="ingredient : ${recipe.ingredients}"
                     th:text="${ingredient.amount}
-                    + ' ' + ${#strings.toLowerCase(ingredient.unitOfMeasure.description)}
+                    + ' ' + ${#strings.toLowerCase(ingredient.unitOfMeasure?.description)}
                     + ' ' + ${ingredient.description}">uuuuuuuuuu</li>
             </ul>
         </div>
         <div class="card">
             <h2>Directions</h2>
-            <p th:text="${recipe.directions}">
+            <p th:utext="${#strings.replace(#strings.escapeXml(recipe.directions), '&#10;', '&lt;br&gt;')}">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque auctor augue lorem, in aliquet leo ullamcorper id.
                 Nulla in fringilla mauris. Donec convallis tempor eleifend. Quisque volutpat cursus eros vitae iaculis.
                 Nulla porta orci eget mi pharetra, nec ultrices ipsum pulvinar. Mauris ut fermentum erat.
-                Integer cursus dictum dolor ultricies consectetur. Quisque sit amet quam ante.
-                Morbi pulvinar lectus at laoreet dignissim. Sed sit amet cursus erat. Curabitur in nisi urna.
-                Sed eu pellentesque risus, nec gravida mi. Donec fermentum commodo est, vitae pharetra est sagittis ultricies.
-                Donec quis felis vel libero vehicula consequat ac vitae odio. Nam vulputate feugiat tristique.
-                Praesent vulputate neque quis hendrerit gravida.
+                Integer cursus dictum dolor ultricies consectetur.
             </p>
         </div>
         <div class="card">
             <h2>Notes</h2>
-            <p th:text="${recipe.notes.recipeNotes}">
+            <p th:utext="${#strings.replace(#strings.escapeXml(recipe.notes?.recipeNotes), '&#10;', '&lt;br&gt;')}">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque auctor augue lorem, in aliquet leo ullamcorper id.
                 Nulla in fringilla mauris. Donec convallis tempor eleifend. Quisque volutpat cursus eros vitae iaculis.
-                Nulla porta orci eget mi pharetra, nec ultrices ipsum pulvinar. Mauris ut fermentum erat.
-                Integer cursus dictum dolor ultricies consectetur. Quisque sit amet quam ante.
-                Morbi pulvinar lectus at laoreet dignissim. Sed sit amet cursus erat. Curabitur in nisi urna.
-                Sed eu pellentesque risus, nec gravida mi. Donec fermentum commodo est, vitae pharetra est sagittis ultricies.
-                Donec quis felis vel libero vehicula consequat ac vitae odio. Nam vulputate feugiat tristique.
-                Praesent vulputate neque quis hendrerit gravida.
             </p>
         </div>
     </div>

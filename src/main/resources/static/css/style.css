@@ -36,6 +36,10 @@
     padding: 0 15px;
 }
 
+.card a {
+    font-size: 13px;
+}
+
 .data {
     margin: 3px;
 }

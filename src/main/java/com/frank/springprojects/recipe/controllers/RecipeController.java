@@ -1,10 +1,13 @@
 package com.frank.springprojects.recipe.controllers;
 
+import com.frank.springprojects.recipe.commands.RecipeCommand;
 import com.frank.springprojects.recipe.services.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -22,5 +25,19 @@ public class RecipeController {
         model.addAttribute("recipe", recipeService.findById(id));
 
         return "recipe/show";
+    }
+
+    @RequestMapping("/recipe/new")
+    private String newRecipe(Model model) {
+        model.addAttribute("recipe", new RecipeCommand());
+
+        return "recipe/form";
+    }
+
+    @PostMapping("recipe")
+    public String saveOrUpdate(@ModelAttribute RecipeCommand recipeCommand) {
+        RecipeCommand savedCommand = recipeService.saveRecipeCommand(recipeCommand);
+
+        return "redirect:/recipe/show/" + savedCommand.getId();
     }
 }

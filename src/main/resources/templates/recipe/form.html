@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add new recipe</title>
+</head>
+<body>
+    <form th:object="${recipe}" th:action="@{/recipe/}" method="post">
+        <input type="hidden" th:field="*{id}">
+        <label for="description">Recipe Description:</label>
+        <input id="description" type="text" th:field="*{description}"/>
+        <br>
+        <label>Categories:</label>
+        <label th:remove="all">
+            <input type="checkbox" value=""/>
+            Cat 1
+        </label>
+        <label>
+            <input type="checkbox" value=""/>
+            Cat 2
+        </label>
+        <br>
+        <label for="preparation">Preparation Time:</label>
+        <input id="preparation" type="text" th:field="*{preparationTime}"/>
+        <br>
+        <label for="cook">Cook Time:</label>
+        <input id="cook" type="text" th:field="*{cookTime}"/>
+        <br>
+        <label for="difficulty">Difficulty:</label>
+        <select id="difficulty">
+            <option>Easy</option>
+            <option>Medium</option>
+            <option>Hard</option>
+        </select>
+        <br>
+        <label for="servings">Servings:</label>
+        <input id="servings" type="text" th:field="*{servings}"/>
+        <br>
+        <label for="url">URL:</label>
+        <input id="url" type="text" th:field="*{url}"/>
+        <br>
+        <ul>
+            <li th:each="ingredient : ${recipe.ingredients}"
+                th:text="${ingredient.amount +
+                   ' ' + ingredient.unitOfMeasure.description +
+                 ' - ' + ingredient.description}"></li>
+        </ul>
+        <br>
+        <label for="directions">Directions:</label>
+        <textarea id="directions" th:field="*{directions}"></textarea>
+        <br>
+        <label for="notes">Notes:</label>
+        <textarea id="notes" th:field="*{notes.recipeNotes}"></textarea>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
