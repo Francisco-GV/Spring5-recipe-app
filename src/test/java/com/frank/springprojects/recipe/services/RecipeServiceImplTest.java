@@ -1,9 +1,9 @@
 package com.frank.springprojects.recipe.services;
 
+import com.frank.springprojects.recipe.converters.recipe.RecipeCommandToRecipe;
+import com.frank.springprojects.recipe.converters.recipe.RecipeToRecipeCommand;
 import com.frank.springprojects.recipe.model.Recipe;
 import com.frank.springprojects.recipe.repositories.RecipeRepository;
-import com.frank.springprojects.recipe.services.RecipeService;
-import com.frank.springprojects.recipe.services.RecipeServiceImpl;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -22,12 +22,16 @@ public class RecipeServiceImplTest {
 
     @Mock
     private RecipeRepository recipeRepository;
+    @Mock
+    RecipeCommandToRecipe recipeCommandToRecipe;
+    @Mock
+    RecipeToRecipeCommand recipeToRecipeCommand;
 
     private AutoCloseable mockitoCloseable;
     @Before
     public void setUp() {
         mockitoCloseable = MockitoAnnotations.openMocks(this);
-        recipeService = new RecipeServiceImpl(recipeRepository);
+        recipeService = new RecipeServiceImpl(recipeRepository, recipeCommandToRecipe, recipeToRecipeCommand);
     }
 
     @Test
