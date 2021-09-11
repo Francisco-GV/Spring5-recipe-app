@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Show Recipe</title>
@@ -8,7 +8,9 @@
 <body>
     <div class="container">
         <div class="card">
-            <h2 th:text="${recipe.description}">Description</h2>
+            <div class="title-card">
+                <h2 th:text="${recipe.description}">Description</h2>
+            </div>
             <div class="data">
                 <h3>Category:</h3>
                 <p th:remove="all">Mexican</p>
@@ -36,7 +38,9 @@
             </div>
         </div>
         <div class="card">
-            <h2>Ingredients</h2>
+            <div class="title-card">
+                <h2>Ingredients</h2>
+            </div>
             <ul>
                 <li th:remove="all">aaaaaaaaaa</li>
                 <li th:remove="all">eeeeeeeeee</li>
@@ -44,22 +48,29 @@
                 <li th:each="ingredient : ${recipe.ingredients}"
                     th:text="${ingredient.amount}
                     + ' ' + ${#strings.toLowerCase(ingredient.unitOfMeasure?.description)}
-                    + ' ' + ${ingredient.description}">uuuuuuuuuu</li>
+                    + ' ' + ${ingredient.description}">uuuuuuuuuu
+                </li>
             </ul>
         </div>
         <div class="card">
-            <h2>Directions</h2>
+            <div class="title-card">
+                <h2>Directions</h2>
+            </div>
             <p th:utext="${#strings.replace(#strings.escapeXml(recipe.directions), '&#10;', '&lt;br&gt;')}">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque auctor augue lorem, in aliquet leo ullamcorper id.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque auctor augue lorem, in aliquet leo
+                ullamcorper id.
                 Nulla in fringilla mauris. Donec convallis tempor eleifend. Quisque volutpat cursus eros vitae iaculis.
                 Nulla porta orci eget mi pharetra, nec ultrices ipsum pulvinar. Mauris ut fermentum erat.
                 Integer cursus dictum dolor ultricies consectetur.
             </p>
         </div>
         <div class="card">
-            <h2>Notes</h2>
+            <div class="title-card">
+                <h2>Notes</h2>
+            </div>
             <p th:utext="${#strings.replace(#strings.escapeXml(recipe.notes?.recipeNotes), '&#10;', '&lt;br&gt;')}">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque auctor augue lorem, in aliquet leo ullamcorper id.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque auctor augue lorem, in aliquet leo
+                ullamcorper id.
                 Nulla in fringilla mauris. Donec convallis tempor eleifend. Quisque volutpat cursus eros vitae iaculis.
             </p>
         </div>

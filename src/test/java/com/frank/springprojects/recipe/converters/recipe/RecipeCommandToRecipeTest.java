@@ -23,11 +23,11 @@ public class RecipeCommandToRecipeTest {
 
     @Before
     public void setUp() throws Exception {
-//        recipeCommandToRecipe = new RecipeCommandToRecipe(
-//                new CategoryCommandToCategory(),
-//                new IngredientCommandToIngredient(
-//                        new UnitOfMeasureCommandToUnitOfMeasure()),
-//                new NotesCommandToNotes(recipeCommandToRecipe));
+        recipeCommandToRecipe = new RecipeCommandToRecipe(
+                new CategoryCommandToCategory(),
+                new IngredientCommandToIngredient(
+                        new UnitOfMeasureCommandToUnitOfMeasure()),
+                new NotesCommandToNotes());
     }
 
     @Test

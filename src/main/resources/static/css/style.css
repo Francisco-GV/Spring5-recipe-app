@@ -3,23 +3,31 @@
 }
 
 .card {
+    text-align: left;
     display: inline-block;
     background-color: #eeeeee;
     width: 700px;
     margin: 10px;
     border: 1px solid #006bc7;
     border-radius: 8px;
+    padding-bottom: 15px;
 }
 
-.card h2 {
-    font-size: 18px;
-    text-align: left;
+.card .title-card {
     background-color: #006bc7;
-    color: white;
     margin: 0 0 10px 0;
     padding: 5px;
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
+    min-height: 22px;
+}
+
+.card .title-card h2 {
+    font-size: 18px;
+    text-align: left;
+    color: white;
+    margin: 0;
+    padding: 0;
 }
 
 .card ul {
@@ -30,10 +38,24 @@
     font-size: 13px;
 }
 
-.card p {
+.card p, .card textarea {
+    display: block;
     font-size: 13px;
     text-align: justify;
     padding: 0 15px;
+}
+
+textarea {
+    padding: 15px 15px;
+    margin: 15px 15px 0 15px;
+
+    --width: 635px;
+    --height: 125px;
+
+    width: var(--width);
+    max-width: var(--width);
+    height: var(--height);
+    max-height: var(--height);
 }
 
 .card a {
@@ -41,13 +63,30 @@
 }
 
 .data {
-    margin: 3px;
+    margin: 3px 15px;
 }
 
-.data h3 {
+.data h3, .data label {
     display: inline-block;
     margin: 0;
     font-size: 13px;
+    min-width: 150px;
+    font-weight: bold;
+}
+
+input:not([type="checkbox"]), select, .data p {
+    width: 200px;
+    margin: 0;
+    padding: 0;
+}
+
+label.label-checkbox {
+    min-width: 0;
+}
+
+.checkbox-div {
+    display: inline-block;
+    min-width: 128px;
 }
 
 .data p {

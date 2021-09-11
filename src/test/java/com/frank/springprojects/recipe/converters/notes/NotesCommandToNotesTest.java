@@ -19,7 +19,7 @@ public class NotesCommandToNotesTest {
 
     @Before
     public void setUp() throws Exception {
-//        notesCommandToNotes = new NotesCommandToNotes();
+        notesCommandToNotes = new NotesCommandToNotes();
     }
 
     @Test

@@ -15,7 +15,7 @@ public class NotesToNotesCommandTest {
 
     @Before
     public void setUp() throws Exception {
-//        notesToNotesCommand = new NotesToNotesCommand(recipeToRecipeCommand);
+        notesToNotesCommand = new NotesToNotesCommand();
     }
 
     @Test

@@ -4,21 +4,22 @@ import com.frank.springprojects.recipe.converters.recipe.RecipeCommandToRecipe;
 import com.frank.springprojects.recipe.converters.recipe.RecipeToRecipeCommand;
 import com.frank.springprojects.recipe.model.Recipe;
 import com.frank.springprojects.recipe.repositories.RecipeRepository;
-import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+@RunWith(MockitoJUnitRunner.class)
 public class RecipeServiceImplTest {
-
-    private RecipeService recipeService;
+    @InjectMocks
+    private RecipeServiceImpl recipeService;
 
     @Mock
     private RecipeRepository recipeRepository;
@@ -26,13 +27,6 @@ public class RecipeServiceImplTest {
     RecipeCommandToRecipe recipeCommandToRecipe;
     @Mock
     RecipeToRecipeCommand recipeToRecipeCommand;
-
-    private AutoCloseable mockitoCloseable;
-    @Before
-    public void setUp() {
-        mockitoCloseable = MockitoAnnotations.openMocks(this);
-        recipeService = new RecipeServiceImpl(recipeRepository, recipeCommandToRecipe, recipeToRecipeCommand);
-    }
 
     @Test
     public void getRecipes() {
@@ -46,9 +40,15 @@ public class RecipeServiceImplTest {
         Mockito.verify(recipeRepository, Mockito.times(1)).findAll();
     }
 
-    @After
-    public void after() throws Exception {
-        mockitoCloseable.close();
-    }
+    @Test
+    public void deleteById() {
+        // given
+        Long id = 1L;
 
+        // when
+        recipeService.deleteById(id);
+
+        // then
+        Mockito.verify(recipeRepository, Mockito.times(1)).deleteById(id);
+    }
 }

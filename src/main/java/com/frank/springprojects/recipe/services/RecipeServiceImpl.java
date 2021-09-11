@@ -8,7 +8,6 @@ import com.frank.springprojects.recipe.repositories.RecipeRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
 import java.util.Objects;
@@ -46,7 +45,12 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
-    @Transactional
+    public RecipeCommand findCommandById(Long id) {
+        log.debug("Getting (command) recipe " + id + "...");
+        return recipeToRecipeCommand.convert(findById(id));
+    }
+
+    @Override
     public RecipeCommand saveRecipeCommand(RecipeCommand recipeCommand) {
         Recipe detachedRecipe = recipeCommandToRecipe.convert(recipeCommand);
 
@@ -54,5 +58,11 @@ public class RecipeServiceImpl implements RecipeService {
         Recipe savedRecipe = recipeRepository.save(Objects.requireNonNull(detachedRecipe));
 
         return recipeToRecipeCommand.convert(savedRecipe);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        log.debug("Deleting recipe (id=" + id + ")...");
+        recipeRepository.deleteById(id);
     }
 }
