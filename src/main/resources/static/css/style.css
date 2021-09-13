@@ -1,5 +1,15 @@
+/** {*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+/*}*/
+
 .container {
     text-align: center;
+}
+
+table, th, td {
+    border: 1px solid gray;
+    padding: 7px 15px;
 }
 
 .card {
@@ -74,7 +84,7 @@ textarea {
     font-weight: bold;
 }
 
-input:not([type="checkbox"]), select, .data p {
+input:not([type="checkbox"]), select, .data p:not(.category) {
     width: 200px;
     margin: 0;
     padding: 0;
@@ -94,4 +104,29 @@ label.label-checkbox {
     padding: 0;
     display: inline-block;
     font-size: 13px;
+}
+
+.categories {
+    display: inline-block;
+}
+
+.category:not(:first-child)::before {
+    content: "- ";
+}
+
+.link {
+    font-size: 1em;
+}
+
+.delete-form button {
+    background: none;
+    border: none;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 1em;
+    color: blue;
+}
+
+.delete-form button:active {
+    color: purple;
 }

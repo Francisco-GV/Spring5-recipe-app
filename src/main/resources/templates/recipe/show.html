@@ -13,8 +13,11 @@
             </div>
             <div class="data">
                 <h3>Category:</h3>
-                <p th:remove="all">Mexican</p>
-                <p th:each="category : ${recipe.categories}" th:text="${category.description}">American</p>
+                <div class="categories">
+                    <p class="category" th:class="''" th:remove="all">Mexican</p>
+                    <p class="category" th:each="category : ${recipe.categories}"
+                       th:text="${category.description}">American</p>
+                </div>
             </div>
             <div class="data">
                 <h3>Preparation Time:</h3>

@@ -5,9 +5,11 @@ import com.frank.springprojects.recipe.services.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -46,5 +48,13 @@ public class RecipeController {
         RecipeCommand savedCommand = recipeService.saveRecipeCommand(recipeCommand);
 
         return "redirect:/recipe/show/" + savedCommand.getId();
+    }
+
+    @GetMapping("/recipe/delete/{id}")
+    public String delete(@RequestHeader(value = "referer", required = false) String referer,
+                         @PathVariable Long id) {
+        recipeService.deleteById(id);
+
+        return "redirect:" + referer;
     }
 }
