@@ -12,6 +12,16 @@ table, th, td {
     padding: 7px 15px;
 }
 
+table {
+    display: inline-table;
+    width: 100%;
+}
+
+.table-container {
+    width: 94%;
+    padding: 0 20px;
+}
+
 .card {
     text-align: left;
     display: inline-block;
@@ -33,6 +43,7 @@ table, th, td {
 }
 
 .card .title-card h2 {
+    display: inline-block;
     font-size: 18px;
     text-align: left;
     color: white;
@@ -129,4 +140,24 @@ label.label-checkbox {
 
 .delete-form button:active {
     color: purple;
+}
+
+.link-button {
+    background: #006bc7;
+    color: white;
+    text-decoration: none;
+}
+
+.link-button:active {
+    color: white;
+}
+
+.link-button:hover {
+    color: #e0e0e0;
+}
+
+.modify-action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

@@ -6,24 +6,30 @@
     <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
 </head>
 <body>
-    <h1>My Recipes!</h1>
-    <div class="table-container" th:if="${not #lists.isEmpty(recipes)}">
-        <table style="border-collapse: collapse">
-            <tr>
-                <th>ID</th>
-                <th>Description</th>
-                <th>View</th>
-                <th>Update</th>
-                <th>Delete</th>
-            </tr>
-            <tr th:each="recipe : ${recipes}">
-                <td th:text="${recipe.id}">&lt;ID goes here&gt;</td>
-                <td th:text="${recipe.description}">&lt;Description goes here&gt;</td>
-                <td><a class="link" href="#" th:href="@{'/recipe/show/' + ${recipe.id}}">view</a></td>
-                <td><a class="link" href="#" th:href="@{'/recipe/update/' + ${recipe.id}}">update</a></td>
-                <td><a class="link" href="#" th:href="@{'/recipe/delete/' + ${recipe.id}}">delete</a></td>
-            </tr>
-        </table>
+    <div class="container">
+        <div class="card" th:if="${not #lists.isEmpty(recipes)}">
+            <div class="title-card">
+                <h2>My Recipes!</h2>
+            </div>
+            <div class="table-container">
+                <table style="border-collapse: collapse">
+                    <tr>
+                        <th>ID</th>
+                        <th>Description</th>
+                        <th>View</th>
+                        <th>Update</th>
+                        <th>Delete</th>
+                    </tr>
+                    <tr th:each="recipe : ${recipes}">
+                        <td th:text="${recipe.id}">&lt;ID goes here&gt;</td>
+                        <td th:text="${recipe.description}">&lt;Description goes here&gt;</td>
+                        <td><a class="link" href="#" th:href="@{'/recipe/show/' + ${recipe.id}}">view</a></td>
+                        <td><a class="link" href="#" th:href="@{'/recipe/update/' + ${recipe.id}}">update</a></td>
+                        <td><a class="link" href="#" th:href="@{'/recipe/delete/' + ${recipe.id}}">delete</a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
     </div>
 </body>
 </html>

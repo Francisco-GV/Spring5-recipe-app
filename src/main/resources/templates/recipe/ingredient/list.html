@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'Ingredients of ' + ${recipe.description}">Ingredients</title>
+    <link rel="stylesheet" href="../../../static/css/style.css" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="title-card">
+                <h2 th:text="'Ingredients of ' + ${recipe.description}">Ingredients</h2>
+            </div>
+            <div class="table-container" th:if="${not #lists.isEmpty(recipe)}">
+                <table style="border-collapse: collapse">
+                    <tr>
+                        <th>ID</th>
+                        <th>Description</th>
+                        <th>View</th>
+                        <th>Update</th>
+                        <th>Delete</th>
+                    </tr>
+                    <!--/*@thymesVar id="ingredient" type="com.frank.springprojects.recipe.commands.IngredientCommand"*/-->
+                    <tr th:each="ingredient : ${recipe.ingredients}">
+                        <td th:text="${ingredient.id}">&lt;ID goes here&gt;</td>
+                        <td th:text="${ingredient.amount}
+                + ' ' + ${ingredient.unitOfMeasure.getDescription()}
+                + ' ' + ${ingredient.description}">&lt;Description goes here&gt;
+                        </td>
+                        <!--<td><a class="link" href="#">view</a></td>-->
+                        <!--<td><a class="link" href="#">update</a></td>-->
+                        <!--<td><a class="link" href="#">delete</a></td>-->
+                        <td><a href="#" th:href="@{'/recipe/' + ${recipe.id} + '/ingredient/' + ${ingredient.id} + '/show'}">View</a></td>
+                        <td><a href="#" th:href="@{'/recipe/' + ${recipe.id} + '/ingredient/' + ${ingredient.id} + '/update'}">Update</a></td>
+                        <td><a href="#" th:href="@{'/recipe/' + ${recipe.id} + '/ingredient/' + ${ingredient.id} + '/delete'}">Delete</a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

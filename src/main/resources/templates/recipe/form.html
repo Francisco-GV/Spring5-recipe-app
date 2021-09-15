@@ -58,8 +58,9 @@
                 </div>
             </div>
             <div class="card">
-                <div class="title-card">
+                <div class="title-card modify-action">
                     <h2>Ingredients</h2>
+                    <a href="#" th:href="@{'/recipe/' + *{id} + '/ingredients'}" class="link-button" role="button">Modify</a>
                 </div>
                 <ul>
                     <li th:each="ingredient : ${recipe.ingredients}"

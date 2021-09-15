@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View Ingredient</title>
+    <link rel="stylesheet" href="../../../static/css/style.css" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="title-card">
+                <h2>Ingredient</h2>
+            </div>
+            <div class="table-container">
+                <table style="border-collapse: collapse">
+                    <tr>
+                        <th>ID</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td th:text="${ingredient.id}">10</td>
+                        <td th:text="${ingredient.amount} + ' ' + ${ingredient.unitOfMeasure.getDescription()} + ' ' + ${ingredient.description}">Tasty Goodnees</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
