@@ -1,6 +1,8 @@
 package com.frank.springprojects.recipe.controllers;
 
 import com.frank.springprojects.recipe.commands.IngredientCommand;
+import com.frank.springprojects.recipe.commands.RecipeCommand;
+import com.frank.springprojects.recipe.commands.UnitOfMeasureCommand;
 import com.frank.springprojects.recipe.services.IngredientService;
 import com.frank.springprojects.recipe.services.RecipeService;
 import com.frank.springprojects.recipe.services.UnitOfMeasureService;
@@ -51,11 +53,23 @@ public class IngredientController {
         return "recipe/ingredient/show";
     }
 
+    @GetMapping("recipe/{recipeId}/ingredient/new")
+    public String newIngredient(@PathVariable Long recipeId, Model model) {
+        RecipeCommand recipeCommand = recipeService.findCommandById(recipeId);
+        IngredientCommand ingredientCommand = new IngredientCommand();
+
+        ingredientCommand.setRecipeId(recipeCommand.getId());
+        ingredientCommand.setUnitOfMeasure(new UnitOfMeasureCommand());
+
+        model.addAttribute("ingredient", ingredientCommand);
+        model.addAttribute("unitOfMeasureList", unitOfMeasureService.listAllUnitOfMeasures());
+
+        return "recipe/ingredient/form";
+    }
+
     @GetMapping("recipe/{recipeId}/ingredient/{ingredientId}/update")
     public String updateRecipeingredient(@PathVariable Long recipeId,
                                          @PathVariable Long ingredientId, Model model) {
-
-
         model.addAttribute("ingredient",
                 ingredientService.findCommandByRecipeIdAndIngredientId(recipeId, ingredientId));
 
@@ -65,7 +79,7 @@ public class IngredientController {
     }
 
     @PostMapping("recipe/{recipeId}/ingredient")
-    public String saveOrUpdate(@ModelAttribute IngredientCommand ingredientCommand){
+    public String saveOrUpdate(@ModelAttribute IngredientCommand ingredientCommand) {
         IngredientCommand savedCommand = ingredientService.saveIngredientCommand(ingredientCommand);
 
         log.debug("saved receipe id:" + savedCommand.getRecipeId());
