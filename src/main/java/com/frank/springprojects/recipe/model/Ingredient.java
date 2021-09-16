@@ -2,6 +2,7 @@ package com.frank.springprojects.recipe.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,7 +14,6 @@ import javax.persistence.OneToOne;
 import java.math.BigDecimal;
 
 @Data
-@EqualsAndHashCode(exclude = "recipe")
 @Entity
 public class Ingredient {
 
@@ -27,6 +27,8 @@ public class Ingredient {
     @OneToOne(fetch = FetchType.EAGER)
     private UnitOfMeasure unitOfMeasure;
 
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     @ManyToOne
     private Recipe recipe;
 }

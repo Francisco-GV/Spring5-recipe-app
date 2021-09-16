@@ -93,4 +93,26 @@ public class IngredientServiceImpl implements IngredientService {
 
         return ingredientToIngredientCommand.convert(savedIngredientOptional.orElseThrow());
     }
+
+    @Transactional
+    @Override
+    public void deleteById(Long recipeId, Long ingredientId) {
+        log.debug("Deletting ingredient (id={}) from recipe {}...", ingredientId, recipeId);
+
+        Recipe recipe = recipeRepository.findById(recipeId).orElseThrow();
+
+        // verify that recipe owns the ingredient
+        Ingredient ingredientToDelete = recipe.getIngredients().stream()
+                .filter(ingredient -> ingredient.getId().equals(ingredientId))
+                .findFirst().orElseThrow(() ->
+                        new RuntimeException("Recipe (id=%d) doesn't own that ingredient (id=%d)!!!!!"
+                                .formatted(recipeId, ingredientId)));
+
+        log.debug("Ingredient to delete: {}", ingredientToDelete.toString());
+
+        ingredientToDelete.setRecipe(null);
+        recipe.getIngredients().remove(ingredientToDelete);
+
+        recipeRepository.save(recipe);
+    }
 }

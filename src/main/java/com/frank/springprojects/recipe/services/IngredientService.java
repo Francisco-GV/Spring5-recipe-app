@@ -5,4 +5,5 @@ import com.frank.springprojects.recipe.commands.IngredientCommand;
 public interface IngredientService {
     IngredientCommand findCommandByRecipeIdAndIngredientId(Long recipeId, Long id);
     IngredientCommand saveIngredientCommand(IngredientCommand ingredientCommand);
+    void deleteById(Long recipeId, Long id);
 }

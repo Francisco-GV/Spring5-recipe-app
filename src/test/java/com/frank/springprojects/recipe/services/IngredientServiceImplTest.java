@@ -88,4 +88,26 @@ public class IngredientServiceImplTest {
         Mockito.verify(recipeRepository, Mockito.times(1)).findById(Mockito.anyLong());
         Mockito.verify(recipeRepository, Mockito.times(1)).save(Mockito.any(Recipe.class));
     }
+
+    @Test
+    public void deleteById() {
+        // given
+        long ingredientId = 3L;
+        long recipeId = 1L;
+
+        Recipe recipe = new Recipe();
+        recipe.setId(recipeId);
+        Ingredient ingredient = new Ingredient();
+        ingredient.setId(ingredientId);
+        ingredient.setRecipe(recipe);
+        recipe.getIngredients().add(ingredient);
+
+        // when
+        Mockito.when(recipeRepository.findById(recipeId)).thenReturn(Optional.of(recipe));
+        ingredientService.deleteById(recipeId, ingredientId);
+
+        // then
+        Mockito.verify(recipeRepository, Mockito.times(1)).findById(Mockito.anyLong());
+        Mockito.verify(recipeRepository, Mockito.times(1)).save(Mockito.any());
+    }
 }

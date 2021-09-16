@@ -128,4 +128,16 @@ public class IngredientControllerTest {
                 .andExpect(MockMvcResultMatchers.model().attributeExists("ingredient"))
                 .andExpect(MockMvcResultMatchers.model().attributeExists("unitOfMeasureList"));
     }
+
+    @Test
+    public void deleteRecipeIngredient() throws Exception {
+        // when
+        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.get("/recipe/2/ingredient/3/delete"));
+
+        // then
+        resultActions.andExpect(MockMvcResultMatchers.status().is3xxRedirection())
+                .andExpect(MockMvcResultMatchers.view().name("redirect:/recipe/2/ingredients"));
+
+        Mockito.verify(ingredientService, Mockito.times(1)).deleteById(Mockito.anyLong(), Mockito.anyLong());
+    }
 }

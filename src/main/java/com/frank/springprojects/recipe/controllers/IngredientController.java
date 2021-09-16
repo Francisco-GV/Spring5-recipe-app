@@ -78,6 +78,17 @@ public class IngredientController {
         return "recipe/ingredient/form";
     }
 
+    @GetMapping("recipe/{recipeId}/ingredient/{ingredientId}/delete")
+    public String deleteRecipeIngredient(//@RequestHeader(value = "referer", required = false) String referer,
+                                         @PathVariable Long recipeId,
+                                         @PathVariable Long ingredientId) {
+
+        ingredientService.deleteById(recipeId, ingredientId);
+
+        // return "redirect:" + referer;
+        return "redirect:/recipe/%d/ingredients".formatted(recipeId);
+    }
+
     @PostMapping("recipe/{recipeId}/ingredient")
     public String saveOrUpdate(@ModelAttribute IngredientCommand ingredientCommand) {
         IngredientCommand savedCommand = ingredientService.saveIngredientCommand(ingredientCommand);
