@@ -42,10 +42,13 @@
                 </div>
                 <div class="data">
                     <label for="difficulty">Difficulty:</label>
-                    <select id="difficulty">
-                        <option>Easy</option>
-                        <option>Medium</option>
-                        <option>Hard</option>
+                    <select id="difficulty" th:field="*{difficulty}">
+                        <option th:remove="all">Easy</option>
+                        <option th:remove="all">Medium</option>
+                        <option th:each="difficultyValue : ${T(com.frank.springprojects.recipe.model.Difficulty).values()}"
+                                th:value="${difficultyValue.name()}"
+                                th:text="${difficultyValue.name()}">Hard
+                        </option>
                     </select>
                 </div>
                 <div class="data">

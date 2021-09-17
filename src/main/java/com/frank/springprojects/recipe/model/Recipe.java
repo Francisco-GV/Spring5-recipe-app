@@ -36,7 +36,7 @@ public class Recipe {
     private String directions;
 
     @Lob
-    private Byte[] image;
+    private byte[] image;
 
     @Enumerated(value = EnumType.STRING)
     private Difficulty difficulty;

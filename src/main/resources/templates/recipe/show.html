@@ -8,8 +8,14 @@
 <body>
     <div class="container">
         <div class="card">
-            <div class="title-card">
+            <div class="title-card modify-action">
                 <h2 th:text="${recipe.description}">Description</h2>
+                <a href="#" th:href="@{'/recipe/' + ${recipe.id} + '/image'}" class="link-button" role="button">Change
+                    Image</a>
+            </div>
+            <div class="data">
+                <img class="recipe-img" alt="Recipe Image" src="../../static/images/default-placeholder.png"
+                     th:src="${(recipe.image != null) ? '/recipe/' + __${recipe.id}__ + '/recipe_image' : '/images/default-placeholder.png'}">
             </div>
             <div class="data">
                 <h3>Category:</h3>

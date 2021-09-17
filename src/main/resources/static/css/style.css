@@ -161,3 +161,9 @@ label.label-checkbox {
     justify-content: space-between;
     align-items: center;
 }
+
+.recipe-img {
+    --size: 150px;
+    width: var(--size);
+    height: var(--size);
+}
