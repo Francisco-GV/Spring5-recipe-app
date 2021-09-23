@@ -30,7 +30,9 @@ public class RecipeControllerTest {
 
     @Before
     public void setUp() {
-        mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(controller)
+                .setControllerAdvice(new ErrorHandlerController())
+                .build();
     }
 
     @Test
@@ -92,7 +94,7 @@ public class RecipeControllerTest {
 
         mockMvc.perform(MockMvcRequestBuilders.get("/recipe/show/1"))
                 .andExpect(MockMvcResultMatchers.status().isNotFound())
-                .andExpect(MockMvcResultMatchers.view().name("errorHandler"));
+                .andExpect(MockMvcResultMatchers.view().name("error"));
     }
 
 
@@ -100,6 +102,6 @@ public class RecipeControllerTest {
     public void testNumberFormatException() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/recipe/show/one"))
                 .andExpect(MockMvcResultMatchers.status().isBadRequest())
-                .andExpect(MockMvcResultMatchers.view().name("errorHandler"));
+                .andExpect(MockMvcResultMatchers.view().name("error"));
     }
 }

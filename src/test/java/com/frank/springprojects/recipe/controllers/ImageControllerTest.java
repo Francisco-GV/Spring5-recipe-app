@@ -32,7 +32,9 @@ public class ImageControllerTest {
 
     @Before
     public void setUp() throws Exception {
-        mockMvc = MockMvcBuilders.standaloneSetup(imageController).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(imageController)
+                .setControllerAdvice(new ErrorHandlerController())
+                .build();
     }
 
     @Test
@@ -86,5 +88,12 @@ public class ImageControllerTest {
 
         // then
         Assert.assertEquals(s.getBytes().length, reponseBytes.length);
+    }
+
+    @Test
+    public void testGetImageNumberFormatException() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/recipe/one/recipe_image"))
+                .andExpect(MockMvcResultMatchers.status().isBadRequest())
+                .andExpect(MockMvcResultMatchers.view().name("error"));
     }
 }
