@@ -3,6 +3,7 @@ package com.frank.springprojects.recipe.services;
 import com.frank.springprojects.recipe.commands.RecipeCommand;
 import com.frank.springprojects.recipe.converters.recipe.RecipeCommandToRecipe;
 import com.frank.springprojects.recipe.converters.recipe.RecipeToRecipeCommand;
+import com.frank.springprojects.recipe.exceptions.NotFoundException;
 import com.frank.springprojects.recipe.model.Recipe;
 import com.frank.springprojects.recipe.repositories.RecipeRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -41,7 +42,8 @@ public class RecipeServiceImpl implements RecipeService {
     @Override
     public Recipe findById(Long id) {
         log.debug("Getting recipe " + id + "...");
-        return recipeRepository.findById(id).orElseThrow();
+        return recipeRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Recipe with id "+ id +" Not Found"));
     }
 
     @Override

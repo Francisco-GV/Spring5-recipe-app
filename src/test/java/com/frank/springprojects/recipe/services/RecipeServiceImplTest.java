@@ -2,6 +2,7 @@ package com.frank.springprojects.recipe.services;
 
 import com.frank.springprojects.recipe.converters.recipe.RecipeCommandToRecipe;
 import com.frank.springprojects.recipe.converters.recipe.RecipeToRecipeCommand;
+import com.frank.springprojects.recipe.exceptions.NotFoundException;
 import com.frank.springprojects.recipe.model.Recipe;
 import com.frank.springprojects.recipe.repositories.RecipeRepository;
 import org.junit.Assert;
@@ -14,6 +15,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -50,5 +52,13 @@ public class RecipeServiceImplTest {
 
         // then
         Mockito.verify(recipeRepository, Mockito.times(1)).deleteById(id);
+    }
+
+    @Test(expected = NotFoundException.class)
+    public void getRecipeByIdNotFound() {
+        Mockito.when(recipeRepository.findById(Mockito.anyLong()))
+                .thenReturn(Optional.empty());
+
+        recipeService.findById(1L);
     }
 }

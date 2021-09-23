@@ -1,6 +1,7 @@
 package com.frank.springprojects.recipe.controllers;
 
 import com.frank.springprojects.recipe.commands.RecipeCommand;
+import com.frank.springprojects.recipe.exceptions.NotFoundException;
 import com.frank.springprojects.recipe.model.Recipe;
 import com.frank.springprojects.recipe.services.RecipeService;
 import org.junit.Before;
@@ -82,5 +83,23 @@ public class RecipeControllerTest {
                         .contentType(MediaType.APPLICATION_FORM_URLENCODED))
                 .andExpect(MockMvcResultMatchers.status().is3xxRedirection())
                 .andExpect(MockMvcResultMatchers.view().name("redirect:/recipe/show/2"));
+    }
+
+    @Test
+    public void testGetRecipeNotFoundException() throws Exception {
+        Mockito.when(recipeService.findById(Mockito.anyLong()))
+                .thenThrow(NotFoundException.class);
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/recipe/show/1"))
+                .andExpect(MockMvcResultMatchers.status().isNotFound())
+                .andExpect(MockMvcResultMatchers.view().name("errorHandler"));
+    }
+
+
+    @Test
+    public void testNumberFormatException() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/recipe/show/one"))
+                .andExpect(MockMvcResultMatchers.status().isBadRequest())
+                .andExpect(MockMvcResultMatchers.view().name("errorHandler"));
     }
 }

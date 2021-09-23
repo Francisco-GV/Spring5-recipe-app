@@ -1,17 +1,23 @@
 package com.frank.springprojects.recipe.controllers;
 
 import com.frank.springprojects.recipe.commands.RecipeCommand;
+import com.frank.springprojects.recipe.exceptions.NotFoundException;
 import com.frank.springprojects.recipe.services.RecipeService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
+@Slf4j
 @Controller
 public class RecipeController {
 
@@ -56,5 +62,27 @@ public class RecipeController {
         recipeService.deleteById(id);
 
         return "redirect:" + referer;
+    }
+
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(NotFoundException.class)
+    public String handleNotFoundException(Model model, Exception exception) {
+        log.error("Handling NotFoundException: " + exception.getMessage());
+
+        model.addAttribute("title", "404 - Not Found");
+        model.addAttribute("exception", exception);
+
+        return "errorHandler";
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(NumberFormatException.class)
+    public String handleNumberFormatException(Model model, Exception exception) {
+        log.error("Handling NumberFormatException: " + exception.getMessage());
+
+        model.addAttribute("title", "400 - Bad Request");
+        model.addAttribute("exception", exception);
+
+        return "errorHandler";
     }
 }

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<!--/*@thymesVar id="exception" type="java.lang.Exception"*/-->
+<!--/*@thymesVar id="title" type="java.lang.String"*/-->
+<body>
+    <div>
+        <h1 th:text="${title}">Error Title</h1>
+        <p th:text="${exception.message}">&lt;Error message goes here&gt;</p>
+    </div>
+</body>
+</html>
