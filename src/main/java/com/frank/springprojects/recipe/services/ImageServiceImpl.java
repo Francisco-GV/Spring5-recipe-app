@@ -20,16 +20,12 @@ public class ImageServiceImpl implements ImageService {
 
     @Override
     public void saveImageFile(Long recipeId, MultipartFile file) {
-        log.debug("Received a file.");
+        log.debug("Saving image for recipe {}.", recipeId);
 
         Recipe recipe = recipeRepository.findById(recipeId).orElseThrow();
 
         try {
-            byte[] bytes = new byte[file.getBytes().length];
-            System.arraycopy(file.getBytes(), 0, bytes, 0, bytes.length);
-
-            recipe.setImage(bytes);
-
+            recipe.setImage(file.getBytes());
             recipeRepository.save(recipe);
         } catch (IOException e) {
             log.error("An error occurred", e);

@@ -46,9 +46,11 @@ public class ImageController {
         RecipeCommand recipeCommand = recipeService.findCommandById(id);
 
         if (recipeCommand.getImage() != null) {
-            response.setContentType("image/jpeg");
-            InputStream is = new ByteArrayInputStream(recipeCommand.getImage());
-            IOUtils.copy(is, response.getOutputStream());
+            response.setContentType("image/png");
+
+            try (InputStream is = new ByteArrayInputStream(recipeCommand.getImage())) {
+                IOUtils.copy(is, response.getOutputStream());
+            }
         }
     }
 }
