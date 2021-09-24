@@ -10,14 +10,22 @@
 <body>
     <div class="container">
         <form th:object="${recipe}" th:action="@{/recipe/}" method="post">
+            <div class="alert" th:if="${#fields.hasErrors('*')}">
+                <p>Please Correct Errors Below</p>
+            </div>
             <div class="card">
                 <div class="title-card">
                     <h2 th:text="${recipe.description}">Description</h2>
                 </div>
                 <input type="hidden" th:field="*{id}">
-                <div class="data">
+                <div class="data" th:class="${#fields.hasErrors('description')} ? 'data has-error' : 'data'">
                     <label for="description">Recipe Description:</label>
-                    <input id="description" type="text" th:field="*{description}"/>
+                    <input id="description" type="text" th:field="*{description}" th:errorclass="has-error" required/>
+                    <div class="help" th:if="${#fields.hasErrors('description')}">
+                        <ul>
+                            <li th:each="err : ${#fields.errors('description')}" th:text="${err}"></li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="data">
                     <label>Categories:</label>
@@ -32,13 +40,23 @@
                         </label>
                     </div>
                 </div>
-                <div class="data">
+                <div class="data" th:class="${#fields.hasErrors('preparationTime')} ? 'data has-error' : 'data'">
                     <label for="preparation">Preparation Time:</label>
-                    <input id="preparation" type="text" th:field="*{preparationTime}"/>
+                    <input id="preparation" type="text" th:field="*{preparationTime}" th:errorclass="has-error"/>
+                    <div class="help" th:if="${#fields.hasErrors('preparationTime')}">
+                        <ul>
+                            <li th:each="err : ${#fields.errors('preparationTime')}" th:text="${err}"></li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="data">
+                <div class="data" th:class="${#fields.hasErrors('cookTime')} ? 'data has-error' : 'data'">
                     <label for="cook">Cook Time:</label>
-                    <input id="cook" type="text" th:field="*{cookTime}"/>
+                    <input id="cook" type="text" th:field="*{cookTime}" th:errorclass="has-error"/>
+                    <div class="help" th:if="${#fields.hasErrors('cookTime')}">
+                        <ul>
+                            <li th:each="err : ${#fields.errors('cookTime')}" th:text="${err}"></li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="data">
                     <label for="difficulty">Difficulty:</label>
@@ -51,13 +69,23 @@
                         </option>
                     </select>
                 </div>
-                <div class="data">
+                <div class="data" th:class="${#fields.hasErrors('servings')} ? 'data has-error' : 'data'">
                     <label for="servings">Servings:</label>
-                    <input id="servings" type="text" th:field="*{servings}"/>
+                    <input id="servings" type="text" th:field="*{servings}" th:errorclass="has-error"/>
+                    <div class="help" th:if="${#fields.hasErrors('servings')}">
+                        <ul>
+                            <li th:each="err : ${#fields.errors('servings')}" th:text="${err}"></li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="data">
+                <div class="data" th:class="${#fields.hasErrors('url')} ? 'data has-error' : 'data'">
                     <label for="url">URL:</label>
-                    <input id="url" type="text" th:field="*{url}"/>
+                    <input id="url" type="text" th:field="*{url}" th:errorclass="has-error"/>
+                    <div class="help" th:if="${#fields.hasErrors('url')}">
+                        <ul>
+                            <li th:each="err : ${#fields.errors('url')}" th:text="${err}"></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
             <div class="card">
@@ -76,14 +104,14 @@
                 <div class="title-card">
                     <h2>Directions</h2>
                 </div>
-                <!--<label for="directions">Directions:</label>-->
+                <label for="directions" style="display: none"></label>
                 <textarea id="directions" th:field="*{directions}"></textarea>
             </div>
             <div class="card">
                 <div class="title-card">
                     <h2>Notes</h2>
                 </div>
-                <!--<label for="notes">Notes:</label>-->
+                <label for="notes" style="display: none"></label>
                 <textarea id="notes" th:field="*{notes.recipeNotes}"></textarea>
             </div>
             <br>

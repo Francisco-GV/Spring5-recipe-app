@@ -167,3 +167,27 @@ label.label-checkbox {
     width: var(--size);
     height: var(--size);
 }
+
+.has-error {
+    color: #8f0909;
+    border-color: #8f0909;
+}
+
+.alert {
+    display: inline-block;
+    width: 700px;
+    color: #8f0909;
+    background-color: #ffb4b4;
+    border: 1px solid #cb6060;
+    border-radius: 8px;
+}
+
+.help ul {
+    margin: 0;
+    padding-left: 25px;
+    color: #8f0909;
+}
+
+.help ul li {
+    color: #8f0909;
+}
