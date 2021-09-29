@@ -1,7 +1,9 @@
 package com.frank.springprojects.recipe.controllers;
 
+import com.frank.springprojects.recipe.commands.CategoryCommand;
 import com.frank.springprojects.recipe.commands.RecipeCommand;
 import com.frank.springprojects.recipe.exceptions.NotFoundException;
+import com.frank.springprojects.recipe.services.CategoryService;
 import com.frank.springprojects.recipe.services.RecipeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,16 +21,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import javax.validation.Valid;
+import java.util.Set;
 
 @Slf4j
 @Controller
 public class RecipeController {
 
     private final RecipeService recipeService;
+    private final CategoryService categoryService;
 
     @Autowired
-    public RecipeController(RecipeService recipeService) {
+    public RecipeController(RecipeService recipeService, CategoryService categoryService) {
         this.recipeService = recipeService;
+        this.categoryService = categoryService;
+    }
+
+    @ModelAttribute("categoryList")
+    public Set<CategoryCommand> getCategories() {
+        Set<CategoryCommand> categoryCommands = categoryService.getAllCategoriesCommand();
+        log.debug("loaded categories: {}", categoryCommands);
+        return categoryService.getAllCategoriesCommand();
     }
 
     @RequestMapping("/recipe/show/{id}")

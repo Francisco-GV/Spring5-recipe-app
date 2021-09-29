@@ -32,11 +32,13 @@
                     <div class="checkbox-div">
                         <label class="label-checkbox" th:remove="all">
                             <input type="checkbox" value=""/>
-                            Cat 1
+                            Category 1
                         </label>
-                        <label class="label-checkbox">
-                            <input type="checkbox" value=""/>
-                            Cat 2
+                        <label class="label-checkbox" th:each="category : ${categoryList}">
+                            <input type="checkbox" name="categories"
+                                   th:text="${category.description}"
+                                   th:value="${category.id}"
+                                   th:field="*{categories}"/>
                         </label>
                     </div>
                 </div>

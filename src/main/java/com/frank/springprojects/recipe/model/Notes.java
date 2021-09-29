@@ -1,7 +1,8 @@
 package com.frank.springprojects.recipe.model;
 
-import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,8 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 
-@Data
-@EqualsAndHashCode(exclude = "recipe")
+@Getter
+@Setter
+@EqualsAndHashCode
 @Entity
 public class Notes {
     @Id
@@ -19,6 +21,7 @@ public class Notes {
     private Long id;
 
     @OneToOne
+    @EqualsAndHashCode.Exclude
     private Recipe recipe;
 
     @Lob
